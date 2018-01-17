@@ -34,9 +34,7 @@ app.use((req, res, next) => {
 //middleware
 app.use(express.static(__dirname + '/public')); 
 	
-//helper function takes 2 ags
-//1) name of helper 2) funct to run
-//The return of this function is what we are going to render 
+//helper
 hbs.registerHelper('getCurrentYear', () => {
 	return new Date().getFullYear();
 });
@@ -60,8 +58,6 @@ app.get('/about', (req, res) => {
 	});
 });
 
-//request for when a resquest fails in /bad
-//send back JSON with errorMessage
 app.get('/bad', (req, res) => {
 	res.send({
 		errorMessage: 'Unable to handle request'
@@ -69,7 +65,6 @@ app.get('/bad', (req, res) => {
 });	
 
 
-//app hast to be 'listening'
 app.listen(3002, () => {
 	console.log('Server running on port 3002');
 });	
