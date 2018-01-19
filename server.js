@@ -2,11 +2,11 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-const port = process.env.PORT || 3003;
+const port = process.env.PORT || 3000;
 	
 var app = express();
 
-hbs.registerPartials(__dirname + '/views/partials' );
+hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 
 
@@ -33,6 +33,7 @@ app.use((req, res, next) => {
 // 	res.render('maintenance.hbs');
 // });
 
+
 //middleware
 app.use(express.static(__dirname + '/public')); 
 	
@@ -41,22 +42,18 @@ hbs.registerHelper('getCurrentYear', () => {
 	return new Date().getFullYear();
 });
 
-//dummy helper
-hbs.registerHelper('screamIt', (text) => {
-	return text.toUpperCase();
-});
-
 //handlers
 app.get('/', (req, res) => {
 	res.render('home.hbs', {
-		pageTitle: 'Home Page!',
-		welcomeMessage: 'Welcome to My Jimmy Page',
+		pageTitle: 'Node Web Server',
+		welcomeMessage: 'Welcome! This simple page is being runned by a Web Server I made with Node.js, Express, and Handlebars.',
+		details: 'The server also creates a log file that keeps track of the http activity on the site.' 
 	});
 });
 
 app.get('/about', (req, res) => {
 	res.render('about.hbs', {
-		pageTitle: 'About Page',
+		pageTitle: 'About Page'
 	});
 });
 
